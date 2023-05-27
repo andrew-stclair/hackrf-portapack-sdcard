@@ -10,11 +10,6 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
-      - name: Get variables
-        id: vars
-        run: |
-          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-          echo "commit=$(git show | grep commit | cut -d ' ' -f2 | rev | cut -c 1-7 | rev)" >> $GITHUB_OUTPUT
       - name: Checkout 
         uses: actions/checkout@master
       - name: Download world map
@@ -25,6 +20,11 @@ jobs:
       - name: Zip Up SD Card
         run: |
           zip -r -9 sdcard.zip *
+      - name: Get variables
+        id: vars
+        run: |
+          echo "::set-output name=date::$(date +'%Y-%m-%d')"
+          echo "::set-output name=commit::$(git show | grep commit | cut -d ' ' -f2 | rev | cut -c 1-7 | rev)"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
