@@ -10,6 +10,9 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       - name: Checkout 
         uses: actions/checkout@master
       - name: Configure git
@@ -19,8 +22,29 @@ jobs:
         run: |
           wget https://github.com/eried/portapack-mayhem/releases/download/world_map/world_map.zip
           unzip world_map.zip -d ADSB
-      - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
+          rm -rf world_map.zip
+      - name: Zip Up SD Card
+        run: |
+          zip -9 sdcard.zip *
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          default_author: github_actions
-          message: '[ci/cd] Update Resources'
-          pathspec_error_handling: exitImmediately
+          tag_name: ${{ steps.version.outputs.date }}
+          release_name: SDCard ${{ steps.version.outputs.date }}
+          body: |
+            ${{ steps.version.outputs.date }}
+          draft: false
+          prerelease: false
+      - name: Upload SD Card Assets
+        id: upload-sd-card-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./sdcard.zip
+          asset_name: mayhem_${{ steps.version.outputs.date }}_COPY_TO_SDCARD.zip
+          asset_content_type: application/zip
