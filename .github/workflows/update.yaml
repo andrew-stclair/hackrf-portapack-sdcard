@@ -24,7 +24,7 @@ jobs:
         id: vars
         run: |
           echo "::set-output name=date::$(date +'%Y-%m-%d')"
-          echo "::set-output name=commit::$(git show | grep commit | cut -d ' ' -f2 | rev | cut -c 1-7 | rev)"
+          echo "::set-output name=commit::v$(date +'%Y.%m.%d')"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
