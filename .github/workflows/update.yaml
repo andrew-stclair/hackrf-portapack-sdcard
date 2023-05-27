@@ -10,11 +10,11 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
-      - name: Get current date
-        id: date
+      - name: Get variables
+        id: variables
         run: |
           echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-          echo "version=v$(date +'%Y.%m.%d')" >> $GITHUB_OUTPUT
+          echo "commit=$(git show | grep commit | cut -d ' ' -f2 | rev | cut -c 1-7 | rev)" >> $GITHUB_OUTPUT
       - name: Checkout 
         uses: actions/checkout@master
       - name: Configure git
@@ -34,10 +34,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.version.outputs.version }}
-          release_name: SDCard ${{ steps.version.outputs.date }}
+          tag_name: ${{ steps.variables.outputs.commit }}
+          release_name: SDCard ${{ steps.variables.outputs.date }}
           body: |
-            ${{ steps.version.outputs.date }}
+            ${{ steps.variables.outputs.date }}
           draft: false
           prerelease: false
       - name: Upload SD Card Assets
@@ -48,5 +48,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./sdcard.zip
-          asset_name: sdcard-${{ steps.version.outputs.date }}.zip
+          asset_name: sdcard-${{ steps.variables.outputs.date }}.zip
           asset_content_type: application/zip
