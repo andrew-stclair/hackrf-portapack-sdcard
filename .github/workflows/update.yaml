@@ -12,7 +12,9 @@ jobs:
     steps:
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        run: |
+          echo "::set-output name=date::$(date +'%Y-%m-%d')"
+          echo "::set-output name=dotdate::$(date +'%Y.%m.%d')"
       - name: Checkout 
         uses: actions/checkout@master
       - name: Configure git
@@ -32,7 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.version.outputs.date }}
+          tag_name: ${{ steps.version.outputs.dotdate }}
           release_name: SDCard ${{ steps.version.outputs.date }}
           body: |
             ${{ steps.version.outputs.date }}
