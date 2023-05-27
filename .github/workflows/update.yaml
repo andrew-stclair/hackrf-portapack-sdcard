@@ -13,8 +13,8 @@ jobs:
       - name: Get current date
         id: date
         run: |
-          echo "::set-output name=date::$(date +'%Y-%m-%d')"
-          echo "::set-output name=dotdate::$(date +'%Y.%m.%d')"
+          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "dotdate=$(date +'%Y.%m.%d')" >> $GITHUB_OUTPUT
       - name: Checkout 
         uses: actions/checkout@master
       - name: Configure git
