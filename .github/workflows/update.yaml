@@ -27,7 +27,7 @@ jobs:
           rm -rf world_map.zip
       - name: Zip Up SD Card
         run: |
-          zip -9 sdcard.zip *
+          zip -r -9 sdcard.zip *
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
