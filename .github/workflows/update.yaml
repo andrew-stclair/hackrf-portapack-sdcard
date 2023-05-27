@@ -11,15 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get variables
-        id: variables
+        id: vars
         run: |
           echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
           echo "commit=$(git show | grep commit | cut -d ' ' -f2 | rev | cut -c 1-7 | rev)" >> $GITHUB_OUTPUT
       - name: Checkout 
         uses: actions/checkout@master
-      - name: Configure git
-        run: |
-          git config http.postBuffer 524288000
       - name: Download world map
         run: |
           wget https://github.com/eried/portapack-mayhem/releases/download/world_map/world_map.zip
@@ -34,10 +31,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.variables.outputs.commit }}
-          release_name: SDCard ${{ steps.variables.outputs.date }}
+          tag_name: ${{ steps.vars.outputs.commit }}
+          release_name: SDCard ${{ steps.vars.outputs.date }}
           body: |
-            ${{ steps.variables.outputs.date }}
+            ${{ steps.vars.outputs.date }}
           draft: false
           prerelease: false
       - name: Upload SD Card Assets
@@ -48,5 +45,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./sdcard.zip
-          asset_name: sdcard-${{ steps.variables.outputs.date }}.zip
+          asset_name: sdcard-${{ steps.vars.outputs.date }}.zip
           asset_content_type: application/zip
