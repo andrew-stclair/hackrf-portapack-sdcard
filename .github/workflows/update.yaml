@@ -34,7 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.version.outputs.dotdate }}
+          tag_name: v${{ steps.version.outputs.dotdate }}
           release_name: SDCard ${{ steps.version.outputs.date }}
           body: |
             ${{ steps.version.outputs.date }}
