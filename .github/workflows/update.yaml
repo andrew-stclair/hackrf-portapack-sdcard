@@ -15,23 +15,25 @@ jobs:
       - name: Download world map
         run: |
           wget https://github.com/eried/portapack-mayhem/releases/download/world_map/world_map.zip
-          unzip world_map.zip -d ADSB
+          unzip world_map.zip -d sdcard/ADSB
           rm -rf world_map.zip
       - name: Zip Up SD Card
         run: |
-          zip -r -9 sdcard.zip *
+          cd sdcard
+          zip -r -9 ../sdcard.zip *
+          cd ..
       - name: Get variables
         id: vars
         run: |
           echo "::set-output name=date::$(date +'%Y-%m-%d')"
-          echo "::set-output name=commit::v$(date +'%Y.%m.%d')"
+          echo "::set-output name=version::v$(date +'%Y.%m.%d')"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.vars.outputs.commit }}
+          tag_name: ${{ steps.vars.outputs.version }}
           release_name: SDCard ${{ steps.vars.outputs.date }}
           body: |
             ${{ steps.vars.outputs.date }}
