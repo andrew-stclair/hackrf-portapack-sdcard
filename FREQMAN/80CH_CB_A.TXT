@@ -1,0 +1,40 @@
+f=476425000,m=NFM,bw=11k,s=12.kHz,d=UHF CH01 - Duplex – Repeater Output
+f=476450000,m=NFM,bw=11k,s=12.kHz,d=UHF CH02 - Duplex – Repeater Output
+f=476475000,m=NFM,bw=11k,s=12.kHz,d=UHF CH03 - Duplex – Repeater Output
+f=476500000,m=NFM,bw=11k,s=12.kHz,d=UHF CH04 - Duplex – Repeater Output
+f=476525000,m=NFM,bw=11k,s=12.kHz,d=UHF CH05 - Duplex – Repeater Output – (Emergency Use Only)
+f=476550000,m=NFM,bw=11k,s=12.kHz,d=UHF CH06 - Duplex – Repeater Output
+f=476575000,m=NFM,bw=11k,s=12.kHz,d=UHF CH07 - Duplex – Repeater Output
+f=476600000,m=NFM,bw=11k,s=12.kHz,d=UHF CH08 - Duplex – Repeater Output
+f=476625000,m=NFM,bw=11k,s=12.kHz,d=UHF CH09 - Simplex – General Use
+f=476650000,m=NFM,bw=11k,s=12.kHz,d=UHF CH10 - Simplex – 4WD Drivers, Convoys, Clubs & National Parks
+f=476675000,m=NFM,bw=11k,s=12.kHz,d=UHF CH11 - Simplex  – Call Channel
+f=476700000,m=NFM,bw=11k,s=12.kHz,d=UHF CH12 - Simplex – General Use
+f=476725000,m=NFM,bw=11k,s=12.kHz,d=UHF CH13 - Simplex – General Use
+f=476750000,m=NFM,bw=11k,s=12.kHz,d=UHF CH14 - Simplex – General Use
+f=476775000,m=NFM,bw=11k,s=12.kHz,d=UHF CH15 - Simplex – General Use
+f=476800000,m=NFM,bw=11k,s=12.kHz,d=UHF CH16 - Simplex – General Use
+f=476825000,m=NFM,bw=11k,s=12.kHz,d=UHF CH17 - Simplex – General Use
+f=476850000,m=NFM,bw=11k,s=12.kHz,d=UHF CH18 - Simplex – Caravan & Camper Convoy Channel
+f=476875000,m=NFM,bw=11k,s=12.kHz,d=UHF CH19 - Simplex – General Use
+f=476900000,m=NFM,bw=11k,s=12.kHz,d=UHF CH20 - Simplex – General Use
+f=476925000,m=NFM,bw=11k,s=12.kHz,d=UHF CH21 - Simplex – General Use
+f=476950000,m=NFM,bw=11k,s=12.kHz,d=UHF CH22 - Data Only (No Voice – No Packet)
+f=476975000,m=NFM,bw=11k,s=12.kHz,d=UHF CH23 - Data Only (No Voice – No Packet)
+f=477000000,m=NFM,bw=11k,s=12.kHz,d=UHF CH24 - Simplex – General Use
+f=477025000,m=NFM,bw=11k,s=12.kHz,d=UHF CH25 - Simplex – General Use
+f=477050000,m=NFM,bw=11k,s=12.kHz,d=UHF CH26 - Simplex – General Use
+f=477075000,m=NFM,bw=11k,s=12.kHz,d=UHF CH27 - Simplex – General Use
+f=477100000,m=NFM,bw=11k,s=12.kHz,d=UHF CH28 - Simplex – General Use
+f=477125000,m=NFM,bw=11k,s=12.kHz,d=UHF CH29 - Simplex – Pacific Hwy (NSW), Bruce Hwy (QLD) – Road Channel
+f=477150000,m=NFM,bw=11k,s=12.kHz,d=UHF CH30 - Simplex – UHF CB Broadcasts
+f=477175000,m=NFM,bw=11k,s=12.kHz,d=UHF CH31 - Repeater Input
+f=477200000,m=NFM,bw=11k,s=12.kHz,d=UHF CH32 - Repeater Input
+f=477225000,m=NFM,bw=11k,s=12.kHz,d=UHF CH33 - Repeater Input
+f=477250000,m=NFM,bw=11k,s=12.kHz,d=UHF CH34 - Repeater Input
+f=477275000,m=NFM,bw=11k,s=12.kHz,d=UHF CH35 - Repeater Input – (Emergency Use Only)
+f=477300000,m=NFM,bw=11k,s=12.kHz,d=UHF CH36 - Repeater Input
+f=477325000,m=NFM,bw=11k,s=12.kHz,d=UHF CH37 - Repeater Input
+f=477350000,m=NFM,bw=11k,s=12.kHz,d=UHF CH38 - Repeater Input
+f=477375000,m=NFM,bw=11k,s=12.kHz,d=UHF CH39 - Simplex – General Use
+f=477400000,m=NFM,bw=11k,s=12.kHz,d=UHF CH40 - Simplex – Highway Channel
