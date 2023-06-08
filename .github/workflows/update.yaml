@@ -12,9 +12,10 @@ jobs:
     steps:
       - name: Checkout 
         uses: actions/checkout@master
-      - name: Generate airlines.db
+      - name: Generate ADSB Databases
         run: |
           python3 tools/make_airlines_db.py
+          python3 tools/make_icao24_db.py
       - name: Download world map
         run: |
           wget https://github.com/eried/portapack-mayhem/releases/download/world_map/world_map.zip
