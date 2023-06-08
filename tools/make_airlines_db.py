@@ -1,12 +1,13 @@
-"""Requests module to download the """
+"""Import Modules"""
 import unicodedata
 import requests
+import csv
 
 print("Downloading DB TXT")
 csv_file = requests.get(
     "https://raw.githubusercontent.com/kx1t/planefence-airlinecodes/main/airlinecodes.txt",
     timeout=20
-).text
+).text.split('\n')
 
 print("Generating airlines.db")
 print(f"| {'code':<4} | {'airline':<32} | {'country':<32} |")
@@ -15,11 +16,9 @@ icao_codes=bytearray()
 airlines_countries=bytearray()
 ROW_COUNT=0
 with open("sdcard/ADSB/airlines.db", "wb") as database:
-    csv_file = csv_file.split('\n')
-    for row in csv_file[1:]:
-        row = row.split(',')
-        icao_code=row[0]
-        if not row == ['']:
+    for row in csv.reader(csv_file[1:], skipinitialspace=True):
+        if not row == [''] and not row == []:
+            icao_code=row[0]
             # Normalize some unicode characters
             airline=unicodedata.normalize('NFKD', row[1][:32]).encode('ascii', 'ignore')
             country=unicodedata.normalize('NFKD', row[3][:32]).encode('ascii', 'ignore')
