@@ -1,9 +1,9 @@
 """Import Modules"""
 import unicodedata
-import requests
 import csv
+import requests
 
-print("Downloading DB TXT")
+print("Downloading airline DB TXT")
 csv_file = requests.get(
     "https://raw.githubusercontent.com/kx1t/planefence-airlinecodes/main/airlinecodes.txt",
     timeout=20
@@ -16,7 +16,7 @@ icao_codes=bytearray()
 airlines_countries=bytearray()
 ROW_COUNT=0
 with open("sdcard/ADSB/airlines.db", "wb") as database:
-    for row in csv.reader(csv_file[1:], skipinitialspace=True):
+    for row in csv.reader(sorted(csv_file[1:]), skipinitialspace=True):
         if not row == [''] and not row == []:
             icao_code=row[0]
             # Normalize some unicode characters
