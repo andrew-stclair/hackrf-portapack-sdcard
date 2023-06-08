@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout 
         uses: actions/checkout@master
+      - name: Generate airlines.db
+        run: |
+          python3 tools/make_airlines_db.py
       - name: Download world map
         run: |
           wget https://github.com/eried/portapack-mayhem/releases/download/world_map/world_map.zip
