@@ -4,7 +4,7 @@ from time import sleep
 import pyvips
 import requests
 
-ZOOM = 8
+ZOOM = 7
 
 # Headers for request
 HEADERS = {
@@ -38,7 +38,7 @@ for x in range(X_TILES):
             os.makedirs(f"/tmp/map-tiles/{x}")
         with open(f"/tmp/map-tiles/{x}/{y}.png", "wb") as image:
             image.write(r_image.content)
-        sleep(1)
+        sleep(0.25)
 
 # Make Map
 print("Making image array")
