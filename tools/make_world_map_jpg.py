@@ -3,7 +3,7 @@ import os
 import pyvips
 import requests
 
-ZOOM = 6
+ZOOM = 7
 
 # Headers for request
 HEADERS = {
@@ -41,7 +41,7 @@ for x in range(X_TILES):
 # Make Map
 print("Making image array")
 tiles = [pyvips.Image.new_from_file(f"/tmp/map-tiles/{x}/{y}.png", access="sequential")
-         for x in range(X_TILES) for y in range(Y_TILES)]
+         for y in range(Y_TILES) for x in range(X_TILES)]
 print("Joining array into single image")
 image = pyvips.Image.arrayjoin(tiles, across=X_TILES)
 print("Saving image")
