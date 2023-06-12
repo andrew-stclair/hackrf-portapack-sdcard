@@ -2,8 +2,9 @@
 import os
 import pyvips
 import requests
+from time import sleep
 
-ZOOM = 7
+ZOOM = 8
 
 # Headers for request
 HEADERS = {
@@ -37,6 +38,7 @@ for x in range(X_TILES):
             os.makedirs(f"/tmp/map-tiles/{x}")
         with open(f"/tmp/map-tiles/{x}/{y}.png", "wb") as image:
             image.write(r_image.content)
+        sleep(1)
 
 # Make Map
 print("Making image array")
@@ -45,4 +47,4 @@ tiles = [pyvips.Image.new_from_file(f"/tmp/map-tiles/{x}/{y}.png", access="seque
 print("Joining array into single image")
 image = pyvips.Image.arrayjoin(tiles, across=X_TILES)
 print("Saving image")
-image.write_to_file("sdcard/ADSB/world_map.jpg")
+image.write_to_file("sdcard/ADSB/world_map.png")
