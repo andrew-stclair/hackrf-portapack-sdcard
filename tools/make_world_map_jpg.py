@@ -1,8 +1,8 @@
 """Import Modules"""
 import os
+from time import sleep
 import pyvips
 import requests
-from time import sleep
 
 ZOOM = 8
 
