@@ -2,7 +2,7 @@ name: Update Repo
 
 on:
   schedule:
-    - cron:  '0 0 * * 0'
+    - cron:  '0 1 1 * *'
   workflow_dispatch:
 
 jobs:
@@ -30,8 +30,8 @@ jobs:
       - name: Get variables
         id: vars
         run: |
-          echo "::set-output name=date::$(date +'%Y-%m-%d')"
-          echo "::set-output name=version::v$(date +'%Y.%m.%d')"
+          echo "::set-output name=date::$(date +'%Y-%m')"
+          echo "::set-output name=version::v$(date +'%Y.%m')"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
