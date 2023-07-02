@@ -33,4 +33,5 @@ with open("sdcard/ADSB/airlines.db", "wb") as database:
                     airline+airline_padding+country+country_padding
                 )
                 ROW_COUNT+=1
+    database.write(icao_codes+airlines_countries)
 print("done")
