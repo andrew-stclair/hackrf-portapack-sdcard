@@ -18,8 +18,8 @@ jobs:
           python3 tools/make_icao24_db.py
       - name: Download world map
         run: |
-          apt update
-          apt install libvips libvips-dev -y
+          apt-get update
+          apt-get install libvips libvips-dev -y
           python3 -m pip install pyvips
           python3 tools/make_world_map_jpg.py
       - name: Zip Up SD Card
