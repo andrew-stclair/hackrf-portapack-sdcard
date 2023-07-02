@@ -21,7 +21,8 @@ jobs:
           apt-get update
           apt-get install libvips libvips-dev -y
           python3 -m pip install pyvips
-          python3 tools/make_world_map.py
+          python3 tools/make_world_map_img.py
+          python3 tools/make_world_map_db.py
       - name: Zip Up SD Card
         run: |
           cd sdcard

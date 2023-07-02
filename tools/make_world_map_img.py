@@ -1,10 +1,10 @@
-"""Import Modules"""
+"""Make the map image"""
 import os
 from time import sleep
 import pyvips
 import requests
 
-ZOOM = 7
+ZOOM = 6
 
 # Headers for request
 HEADERS = {
