@@ -4,7 +4,7 @@ from time import sleep
 import pyvips
 import requests
 
-ZOOM = 6
+ZOOM = 7
 
 # Headers for request
 HEADERS = {
