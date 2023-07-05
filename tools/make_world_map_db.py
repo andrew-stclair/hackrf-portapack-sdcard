@@ -21,15 +21,9 @@ with open('sdcard/ADSB/world_map.bin', 'wb') as outfile:
     for y in range(0, im.size[1]):
         LINE = b''
         for x in range(0, im.size[0]):
-            # RRRRRGGGGGGBBBBB
             pixel_lcd = (pix[x, y][0] >> 3) << 11
             pixel_lcd |= (pix[x, y][1] >> 2) << 5
             pixel_lcd |= (pix[x, y][2] >> 3)
-            #         RRRGGGBB to
-            # RRR00GGG000BB000
-            # pixel_lcd = (pix[x, y][0] >> 5) << 5
-            # pixel_lcd |= (pix[x, y][1] >> 5) << 2
-            # pixel_lcd |= (pix[x, y][2] >> 6)
             LINE += struct.pack('<H', pixel_lcd)
         outfile.write(LINE)
         print(str(y) + '/' + str(im.size[1]), end="\r")
