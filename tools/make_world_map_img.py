@@ -5,17 +5,18 @@ from PIL import Image
 import requests
 
 ZOOM = 7
+DELAY = 0.035
 
-# Headers for request
+# Extra headers for request
 HEADERS = {
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Connection": "keep-alive",
-    "Host": "tile.openstreetmap.org",
-    "User-Agent": "Requests Python3.11",
     "Accept-Language": "en-AU,en;q=0.9",
-    "Accept-Encoding": "gzip, deflate, br",
+    "User-Agent": "Requests Python3.11",
     "Priority": "u=0, i"
 }
+
+# Requests session
+s = requests.Session()
+s.headers = s.headers.update(HEADERS)
 
 # Calculate number of tiles
 X_TILES = int(2**ZOOM)
@@ -57,18 +58,23 @@ def join_tiled_images(image_paths, x_tiles, y_tiles, output_path):
 # Download Tiles
 print("Downloading Tiles")
 image_array = []
+LAST_DL_TIME = 0.25
 for x in range(X_TILES):
     for y in range(Y_TILES):
-        print("Downloading:", x, y)
-        r_image = requests.get(f"http://tile.openstreetmap.org/{ZOOM}/{x}/{y}.png",
-                               timeout=20, headers=HEADERS)
-        if not os.path.exists(f"/tmp/map-tiles/{x}"):
-            os.makedirs(f"/tmp/map-tiles/{x}")
-        with open(f"/tmp/map-tiles/{x}/{y}.png", "wb") as image:
+        print(f"\rDownloading: {x:4} {y:4}. DL Time: {((X_TILES*Y_TILES)-len(image_array))*(DELAY+LAST_DL_TIME)/60:6.2f} Minutes",
+              end="", flush=True)
+        r_image = s.get(f"http://tile.openstreetmap.org/{ZOOM}/{x}/{y}.png", timeout=20)
+        LAST_DL_TIME = (LAST_DL_TIME+(r_image.elapsed.microseconds/1000000))/2
+        if not os.path.exists(f"/tmp/map-tiles/{ZOOM}/{x}"):
+            os.makedirs(f"/tmp/map-tiles/{ZOOM}/{x}")
+        with open(f"/tmp/map-tiles/{ZOOM}/{x}/{y}.png", "wb") as image:
             image.write(r_image.content)
-            image_array.append(f"/tmp/map-tiles/{x}/{y}.png")
-        sleep(0.01)
+            image_array.append(f"/tmp/map-tiles/{ZOOM}/{x}/{y}.png")
+        sleep(DELAY)
+print('')
 
 # Make Map
 print("Making image array")
 join_tiled_images(image_array, X_TILES, Y_TILES, "sdcard/ADSB/world_map.png")
+
+s.close()
